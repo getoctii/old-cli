@@ -16,7 +16,7 @@ before_script:
   - ln -svf $CI_PROJECT_DIR $GOPATH/src/$REPO_NAME
   - cd $GOPATH/src/$REPO_NAME
   - apt-get update -y
-  - apt-get install -y glibc gnome-keyring
+  - apt-get install -y libc6 libc6-dev gnome-keyring
 
 stages:
   - test
