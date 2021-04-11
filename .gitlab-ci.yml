@@ -15,8 +15,6 @@ before_script:
   - mkdir -p $GOPATH/src/$(dirname $REPO_NAME)
   - ln -svf $CI_PROJECT_DIR $GOPATH/src/$REPO_NAME
   - cd $GOPATH/src/$REPO_NAME
-  - apt-get update -y
-  - apt-get install -y libc6 libc6-dev libglib2.0-dev libgnome-keyring-dev
 
 stages:
   - test
