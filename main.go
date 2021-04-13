@@ -86,6 +86,18 @@ func main() {
 					},
 				},
 			},
+			{
+				Name: "templates",
+				Usage: "Scaffold your product from a template",
+				Subcommands: []*cli.Command {
+					{
+						Name: "theme",
+						Usage: "Write a theme template",
+						UsageText: "octii templates theme <output_file>",
+						Action: apps.Theme,
+					},
+				},
+			},
 		},
 	}
 
