@@ -19,7 +19,6 @@ before_script:
 stages:
   - test
   - build
-  - deploy
 
 format:
   stage: test
@@ -31,7 +30,7 @@ format:
 compile:
   stage: build
   script:
-    - go build -race -ldflags "-extldflags '-static'" -o $CI_PROJECT_DIR/octii
+    - ./build.sh
   artifacts:
     paths:
-      - octii
+      - builds/
