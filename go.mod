@@ -1,4 +1,4 @@
-module octiiCli
+module github.com/innatical/octii-cli
 
 go 1.16
 
