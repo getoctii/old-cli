@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/urfave/cli/v2"
 	"os"
-	apps "octiiCli/apps"
+	apps "github.com/innatical/octii-cli/apps"
 )
 
 
