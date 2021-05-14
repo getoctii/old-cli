@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"github.com/urfave/cli/v2"
 	"net/http"
-	"octiiCli/utils"
+	"github.com/innatical/octii-cli/utils"
 	"sync"
 )
 
