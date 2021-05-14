@@ -3,7 +3,7 @@ package apps
 import (
 	"github.com/charmbracelet/lipgloss"
 	"github.com/urfave/cli/v2"
-	"octiiCli/utils"
+	"github.com/innatical/octii-cli/utils"
 	"time"
 )
 

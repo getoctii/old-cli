@@ -5,7 +5,7 @@ import (
 	"github.com/urfave/cli/v2"
 	"io"
 	"net/http"
-	"octiiCli/utils"
+	"github.com/innatical/octii-cli/utils"
 	"os"
 	"sync"
 )
