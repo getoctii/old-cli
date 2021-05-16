@@ -1,49 +1,48 @@
 package main
 
 import (
+	apps "github.com/innatical/octii-cli/apps"
 	"github.com/urfave/cli/v2"
 	"os"
-	apps "github.com/innatical/octii-cli/apps"
 )
 
-
 func main() {
-	app := &cli.App {
-		Name: "octii",
-		Usage: "Octii DevTools",
+	app := &cli.App{
+		Name:      "octii",
+		Usage:     "Octii DevTools",
 		UsageText: "octii [global options] command [command options] [arguments...]",
-		Commands: []*cli.Command {
+		Commands: []*cli.Command{
 			{
-				Name: "account",
+				Name:  "account",
 				Usage: "Manage your Octii account",
-				Subcommands: []*cli.Command {
+				Subcommands: []*cli.Command{
 					{
-						Name: "login",
-						Usage: "Login into Octii",
-						UsageText: "octii account login",
-						Action: apps.Login,
+						Name:      "login",
+						Usage:     "Login into Octii",
+						UsageText: "octii account login <token>",
+						Action:    apps.Login,
 					},
 					{
-						Name: "info",
-						Usage: "Show account info for the logged in user",
+						Name:      "info",
+						Usage:     "Show account info for the logged in user",
 						UsageText: "octii account info",
-						Action: apps.Account,
+						Action:    apps.Account,
 					},
 				},
 			},
 			{
-				Name: "organizations",
+				Name:  "organizations",
 				Usage: "Manage your developer organizations",
 				Subcommands: []*cli.Command{
 					{
-						Name: "list",
-						Usage: "List your Octii organizations",
+						Name:      "list",
+						Usage:     "List your Octii organizations",
 						UsageText: "octii organizations list",
-						Action: apps.Organizations,
+						Action:    apps.Organizations,
 					},
 					{
-						Name: "products",
-						Usage: "Get the products belonging to an organization",
+						Name:      "products",
+						Usage:     "Get the products belonging to an organization",
 						UsageText: "octii organizations products <id>",
 						Subcommands: []*cli.Command{
 							{
@@ -57,44 +56,44 @@ func main() {
 				},
 			},
 			{
-				Name: "products",
+				Name:  "products",
 				Usage: "Manage your Octii products",
 				Subcommands: []*cli.Command{
 					{
-						Name: "resources",
+						Name:  "resources",
 						Usage: "Manage your Octii resources",
 						Subcommands: []*cli.Command{
 							{
-								Name: "get",
-								Usage: "Get the payload of a resource",
+								Name:      "get",
+								Usage:     "Get the payload of a resource",
 								UsageText: "octii products resources get <product_id> <resource_id> <output_file>",
-								Action: apps.GetResource,
+								Action:    apps.GetResource,
 							},
 							{
-								Name: "put",
-								Usage: "Put the payload of a resource",
+								Name:      "put",
+								Usage:     "Put the payload of a resource",
 								UsageText: "octii products resources put <product_id> <resource_id> <input_file>",
-								Action: apps.PutResource,
+								Action:    apps.PutResource,
 							},
 							{
-								Name: "list",
-								Usage: "Get all resources for a product",
+								Name:      "list",
+								Usage:     "Get all resources for a product",
 								UsageText: "octii products resources list <product_id>",
-								Action: apps.Resources,
+								Action:    apps.Resources,
 							},
 						},
 					},
 				},
 			},
 			{
-				Name: "templates",
+				Name:  "templates",
 				Usage: "Scaffold your product from a template",
-				Subcommands: []*cli.Command {
+				Subcommands: []*cli.Command{
 					{
-						Name: "theme",
-						Usage: "Write a theme template",
+						Name:      "theme",
+						Usage:     "Write a theme template",
 						UsageText: "octii templates theme <output_file>",
-						Action: apps.Theme,
+						Action:    apps.Theme,
 					},
 				},
 			},

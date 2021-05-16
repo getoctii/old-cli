@@ -2,15 +2,15 @@ package apps
 
 import (
 	"github.com/charmbracelet/lipgloss"
-	"github.com/urfave/cli/v2"
 	"github.com/innatical/octii-cli/utils"
+	"github.com/urfave/cli/v2"
 	"time"
 )
 
 var (
 	errorStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("#FF0000"))
-	keyStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("#43A9FF"))
-	dataStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("#874BFD"))
+	keyStyle   = lipgloss.NewStyle().Foreground(lipgloss.Color("#43A9FF"))
+	dataStyle  = lipgloss.NewStyle().Foreground(lipgloss.Color("#874BFD"))
 	validStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("#00AA00"))
 )
 
@@ -34,10 +34,10 @@ func Account(_ *cli.Context) error {
 		valid = validStyle.Render("✓")
 	}
 
-	println(utils.List(map[string]string {
-		keyStyle.Render("ID"): dataStyle.Render(claims.Subject),
+	println(utils.List(map[string]string{
+		keyStyle.Render("ID"):      dataStyle.Render(claims.Subject),
 		keyStyle.Render("Expires"): dataStyle.Render(claims.ExpiresAt.String()),
-		keyStyle.Render("Valid"): valid,
+		keyStyle.Render("Valid"):   valid,
 	}, 50))
 
 	return nil
