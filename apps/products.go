@@ -2,10 +2,10 @@ package apps
 
 import (
 	"encoding/json"
+	"github.com/innatical/octii-cli/utils"
 	"github.com/urfave/cli/v2"
 	"io"
 	"net/http"
-	"github.com/innatical/octii-cli/utils"
 	"os"
 	"sync"
 )
@@ -19,15 +19,15 @@ var (
 )
 
 type Resource struct {
-	ID string `json:"id"`
+	ID   string `json:"id"`
 	Name string `json:"name"`
-	Type int `json:"type"`
+	Type int    `json:"type"`
 }
 
 func getResource(ch chan interface{}, wg *sync.WaitGroup, productID string, id string, token string) {
 	defer wg.Done()
 	client := &http.Client{}
-	request, err := http.NewRequest("GET", "https://gateway.octii.chat/products/" + productID + "/resources/" + id, nil)
+	request, err := http.NewRequest("GET", "https://api.octii.chat/v1/products/"+productID+"/resources/"+id, nil)
 
 	if err != nil {
 		ch <- &errorString{"Couldn't reach gateway!"}
@@ -66,7 +66,7 @@ func Resources(c *cli.Context) error {
 	}
 
 	client := &http.Client{}
-	request, err := http.NewRequest("GET", "https://gateway.octii.chat/products/" + id + "/resources", nil)
+	request, err := http.NewRequest("GET", "https://api.octii.chat/v1/products/"+id+"/resources", nil)
 
 	if err != nil {
 		return &errorString{errorStyle.Render("Couldn't reach gateway!")}
@@ -116,7 +116,7 @@ func Resources(c *cli.Context) error {
 
 	wg.Wait()
 	close(ch)
-	err = <- collectorCh
+	err = <-collectorCh
 
 	if err != nil {
 		return &errorString{errorStyle.Render(err.Error())}
@@ -126,7 +126,7 @@ func Resources(c *cli.Context) error {
 	info := make(map[string]string)
 
 	for _, v := range results {
-		info[keyStyle.Render(v.ID) + " " + validStyle.Render(types[v.Type])] = dataStyle.Render(v.Name)
+		info[keyStyle.Render(v.ID)+" "+validStyle.Render(types[v.Type])] = dataStyle.Render(v.Name)
 	}
 
 	println(utils.List(info, 75))
@@ -145,7 +145,7 @@ func GetResource(c *cli.Context) error {
 	}
 
 	client := &http.Client{}
-	request, err := http.NewRequest("GET", "https://gateway.octii.chat/products/" + productId + "/resources/" + resourceId + "/payload", nil)
+	request, err := http.NewRequest("GET", "https://api.octii.chat/v1/products/"+productId+"/resources/"+resourceId+"/payload", nil)
 
 	if err != nil {
 		return &errorString{errorStyle.Render("Couldn't reach gateway!")}
@@ -195,7 +195,7 @@ func PutResource(c *cli.Context) error {
 	defer file.Close()
 
 	client := &http.Client{}
-	request, err := http.NewRequest("PUT", "https://gateway.octii.chat/products/" + productId + "/resources/" + resourceId + "/payload", file)
+	request, err := http.NewRequest("PUT", "https://api.octii.chat/v1/products/"+productId+"/resources/"+resourceId+"/payload", file)
 
 	if err != nil {
 		return &errorString{errorStyle.Render("Couldn't reach gateway!")}
